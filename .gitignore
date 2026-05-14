@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data & logs (user-supplied, not committed)
+data/sample_videos/*
+!data/sample_videos/.gitkeep
+logs/*
+!logs/.gitkeep
+
+# Large local dataset archives (download separately; too large for GitHub)
+archive/
+
+# Test tooling
+.pytest_cache/
+
+# YOLO model weights
+*.pt
+
+# OS
+.DS_Store
+Thumbs.db

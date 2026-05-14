@@ -1,0 +1,41 @@
+# =============================================================================
+# Crowd Analysis — Configuration
+# =============================================================================
+
+# --- Detection ---
+model_path: "yolov8n.pt"
+confidence_threshold: 0
+device: "auto"                    # "cpu", "cuda:0", or "auto"
+
+# --- Video ---
+source: "./data/sample_videos/sample1.mp4"  # file path, 0 for webcam, or RTSP URL
+output_video: null                        # null = no save, or path string
+display: true
+target_fps: 30
+flip_code: 1                         # 1=horizontal mirror fix
+
+# --- ROI Definitions ---
+# type: "counting" — triggers crowd threshold alerts
+# type: "restricted" — triggers intrusion / loitering alerts
+rois:
+  - name: "restricted_zone"
+    type: "restricted"
+    polygon: [[1350, 100], [1920, 100], [1920, 450], [1350, 450]]
+
+# --- Tracking ---
+tracker: "bytetrack"              # "bytetrack" or "botsort"
+track_history_length: 90          # max centroid history per track (frames)
+
+# --- Behavior Thresholds ---
+surge_delta: 10                   # person-count jump to flag as surge
+surge_window_sec: 3.0             # time window for surge detection
+panic_speed_thresh: 200           # pixels/sec average speed to flag panic
+panic_duration_frames: 15         # consecutive frames above speed to confirm
+loiter_time_sec: 30.0             # seconds in restricted zone to flag loitering
+intrusion_cooldown_sec: 5.0       # suppress duplicate intrusion alerts
+
+# --- Alerts ---
+alert_console: true
+alert_sound: false
+alert_webhook_url: null           # optional HTTP POST endpoint
+alert_log_file: "logs/events.jsonl"
